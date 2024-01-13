@@ -1,0 +1,75 @@
+<template>
+  <div id="app" class="container mt-4">
+    <h1>Calculadora Aritmética</h1>
+
+    <div class="form-group">
+      <label for="numero1">Número 1:</label>
+      <input v-model="numero1" type="number" class="form-control" @input="calcularResultado" />
+    </div>
+
+    <div class="form-group">
+      <label for="numero2">Número 2:</label>
+      <input v-model="numero2" type="number" class="form-control" @input="calcularResultado" />
+    </div>
+
+    <div class="form-group">
+      <label for="operacao">Operação:</label>
+      <select v-model="operacao" class="form-control" @change="calcularResultado">
+        <option value="+">Soma</option>
+        <option value="-">Subtração</option>
+        <option value="*">Multiplicação</option>
+        <option value="/">Divisão</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="resultado">Resultado:</label>
+      <input v-model="resultado" type="text" class="form-control" readonly />
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      numero1: 0,
+      numero2: 0,
+      operacao: '+',
+      resultado: 0,
+    };
+  },
+  methods: {
+    calcularResultado() {
+      switch (this.operacao) {
+        case '+':
+          this.resultado = this.numero1 + this.numero2;
+          break;
+        case '-':
+          this.resultado = this.numero1 - this.numero2;
+          break;
+        case '*':
+          this.resultado = this.numero1 * this.numero2;
+          break;
+        case '/':
+          this.resultado = this.numero1 / this.numero2;
+          break;
+        default:
+          this.resultado = 0;
+      }
+    },
+  },
+};
+</script>
+
+<style>
+#app {
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+</style>
